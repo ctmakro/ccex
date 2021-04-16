@@ -4,7 +4,7 @@ from api import *
 def shorter_hash(hash):
     return f'{hash[:4]}...{hash[-4:]}'
 
-class cc_account:
+class CCAccount:
     def __init__(self, pubkey, apikey):
         self.pk = pubkey
         self.ak = apikey
@@ -19,7 +19,7 @@ class cc_account:
 
         self.load_history()
         print(f'account {shorter_hash(self.pk)} ready ({len(self.incomings)} in {len(self.outgoings)} out)')
-        
+
         self.calc_balance()
         print(f'balance is {self.balance}')
 
@@ -66,10 +66,10 @@ class cc_account:
 
 if __name__ == '__main__':
     import time
-    from creds import apikey, pubkey, myaddr, authoraddr
+    from creds import apikey, pubkey
+    cca = CCAccount(pubkey, apikey)
 
-    cca = cc_account(pubkey, apikey)
-
+    # from creds import myaddr, authoraddr
     # result = cca.send(authoraddr, 1.0, 'experiment #1')
     # print(result)
     # time.sleep(1)
